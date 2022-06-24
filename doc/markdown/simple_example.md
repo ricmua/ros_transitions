@@ -21,7 +21,8 @@ Contact: a.whit (nml@whit.contact)
 This example illustrates the basic functionality and usage of the 
 ``ros_transitions`` package. It assumes that the Python code is executed in a 
 properly configured [ROS environment][ros_environment]. See the 
-[Doctest](#doctest) section for instructions for running this example.
+end of this document for instructions for 
+[running this example](#doctest).
 
 
 ### Initialize a state machine
