@@ -40,6 +40,12 @@ Probably the easiest way to get started is to review the
 
 ## License
 
+Mozilla Public License 2.0
+
+Copyright 2022 Carnegie Mellon University Neuromechatronics Lab (a.whit)
+
+Contact: a.whit (nml@whit.contact)
+
 Please see [LICENSE.txt](./LICENSE.txt).
 
 [ROS2]: https://docs.ros.org/en/humble/index.html
