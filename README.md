@@ -32,10 +32,12 @@ A state machine can be [defined][state_machine] as follows:
 The core functionality of this package is a wrapper that publishes information 
 about state transitions and relevant inputs (i.e., triggering events) to the 
 ROS2 [graph][ros_graph]. This information can then be used by other ROS2 nodes.
+In the context of ROS2 applications, this functionality can be useful for 
+coordinating multiple processes with the prevailing state of a system.
 
 ## Getting started
 
-Probably the easiest way to get started is to review the  
+Probably the easiest way to get started is to review the 
 [introductory example](doc/markdown/simple_example.md).
 
 ## License
