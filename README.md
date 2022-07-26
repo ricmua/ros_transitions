@@ -40,15 +40,22 @@ multiple processes with the internal state of a system.
 Probably the easiest way to get started is to review the 
 [introductory example](doc/markdown/simple_example.md).
 
-## License
+License
+-------
 
-Mozilla Public License 2.0
+Copyright 2022 [Neuromechatronics Lab], Carnegie Mellon University (a.whit)
 
-Copyright 2022 Carnegie Mellon University Neuromechatronics Lab (a.whit)
+Created by: a. whit. (nml@whit.contact)
 
-Contact: a.whit (nml@whit.contact)
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 Please see [LICENSE.txt](./LICENSE.txt).
+
+
+
+[Neuromechatronics Lab]: https://www.meche.engineering.cmu.edu/faculty/neuromechatronics-lab.html
 
 [ROS2]: https://docs.ros.org/en/humble/index.html
 
