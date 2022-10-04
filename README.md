@@ -40,12 +40,16 @@ multiple processes with the internal state of a system.
 Probably the easiest way to get started is to review the 
 [introductory example](doc/markdown/simple_example.md).
 
-License
--------
+## Benchmarks
 
-Copyright 2022 [Neuromechatronics Lab], Carnegie Mellon University (a.whit)
+Limited [performance benchmarks](doc/markdown/benchmarks.md) are available.
 
-Created by: a. whit. (nml@whit.contact)
+# License
+
+Copyright 2022 [Neuromechatronics Lab], 
+Carnegie Mellon University (a.whit)
+
+Maintained by: a. whit. (nml@whit.contact)
 
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -53,6 +57,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 Please see [LICENSE.txt](./LICENSE.txt).
 
+<!---------------------------------------------------------------------
+   References
+---------------------------------------------------------------------->
 
 
 [Neuromechatronics Lab]: https://www.meche.engineering.cmu.edu/faculty/neuromechatronics-lab.html
