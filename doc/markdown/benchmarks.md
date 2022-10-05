@@ -82,7 +82,11 @@ Commit [123f588]:
 
 General ROS2 benchmarking results are also of interest. iRobot provides a 
 [ROS2 performance evaluation framework][ros2_performance], and a 
-[table of results][ros2_performance_results].
+[table of results][ros2_performance_results]. Note the criterion for 
+classifying a ROS message as _late_:
+
+> A message is classified as late if... its latency is greater than 
+> `min(0.2*period, 5ms)`.
 
 
 
