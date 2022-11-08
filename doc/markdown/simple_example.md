@@ -37,6 +37,7 @@ does nothing, and will simply be used as a state machine model.[^other_examples]
 ```python
 >>> class Matter:
 ...     pass
+
 ```
 
 Initialize a [pytransitions] state machine by defining a set of states and 
@@ -52,6 +53,7 @@ transitions that represent the phases of matter. Set the initial state to
 >>> machine.add_transition('freeze', source='liquid', dest='solid')
 >>> machine.add_transition('vaporize', source='liquid', dest='gas')
 >>> machine.add_transition('condense', source='gas', dest='liquid')
+
 ```
 
 The combination of ``machine`` and ``model`` is enough to define a 
@@ -72,6 +74,7 @@ the state machine available to other nodes on the ROS [graph][ros_graph].
 >>> import ros_transitions
 >>> rclpy.init()
 >>> node = ros_transitions.Node(machine=machine)
+
 ```
 
 That's it. The state machine is now connected to ROS.[^spin_footnote]
@@ -89,6 +92,7 @@ for the purpose of this example. -->
 ``` python
 >>> import rclpy.node
 >>> client_node = rclpy.node.Node('client')
+
 ```
 
 Subscribe the client node to the `state` topic, and define a callback function 
@@ -97,15 +101,34 @@ that will print state transitions, as they happen.[^note_about_events]
 ``` python
 >>> from ros_transitions import state_message
 >>> state_callback = lambda m: print(f'State: {m.data}', flush=True)
->>> client_node.create_subscription(msg_type    = state_message, 
-...                                 topic       ='machine/state', 
-...                                 callback    = state_callback,
-...                                 qos_profile = 5);
+>>> subscription = client_node.create_subscription(msg_type    = state_message, 
+...                                                topic       ='machine/state', 
+...                                                callback    = state_callback,
+...                                                qos_profile = 5);
+
 ```
 
 [^note_about_events]: In addition to the `machine/state` topic, a subscription 
                       to the `machine/event` topic could also be initialized.
 
+Initialize a publisher for sending triggers to the state machine node.
+
+``` python
+>>> from ros_transitions import trigger_message
+>>> publisher = client_node.create_publisher(msg_type    = trigger_message, 
+...                                          topic       ='machine/trigger', 
+...                                          qos_profile = 5);
+
+```
+
+Define simple lambda functions for simplifying the process of updating the 
+state machine via ROS.
+
+```
+>>> spin = lambda n: rclpy.spin_once(n, timeout_sec=0.005)
+>>> trigger = lambda s: publisher.publish(trigger_message(data=s))
+
+```
 
 Test the state machine node by triggering a state transition, and then passing 
 control[^spin_once] to the `ros_transitions` node, so that any relevant 
@@ -114,15 +137,18 @@ messages may be published to the ROS graph.
 [^spin_once]: We pass control of the process to the ROS2 executor -- for a single cycle -- via the [spin_once][rclpy_spin_once] command.
 
 ``` python
->>> result = model.melt()
->>> rclpy.spin_once(node, timeout_sec=0.500)
+>>> result = trigger('melt') # result = model.melt()
+>>> spin(client_node)
+>>> spin(node)
+
 ```
 
 Allow the client node to process any ROS messages that it might receive.
 
 ``` python
->>> rclpy.spin_once(client_node, timeout_sec=0.500)
+>>> spin(client_node)
 State: liquid
+
 ```
 
 This shows that a state transition message was sent from the `ros_transitions` 
@@ -131,22 +157,29 @@ transitioned from the `solid` state to the `liquid` state. Trigger another
 transition.
 
 ``` python
->>> result = model.vaporize()
->>> rclpy.spin_once(node, timeout_sec=0.500)
->>> rclpy.spin_once(client_node, timeout_sec=0.500)
+>>> result = trigger('vaporize') # result = model.vaporize()
+>>> spin(client_node)
+>>> spin(node)
+>>> spin(client_node)
 State: gas
+
 ```
 
 Finally, return to the original state.
 
 ``` python
->>> result = model.condense()
->>> result = model.freeze()
->>> for n in range(2):
-...     rclpy.spin_once(node, timeout_sec=0.500)
-...     rclpy.spin_once(client_node, timeout_sec=0.500)
+>>> result = trigger('condense') # result = model.condense()
+>>> spin(client_node)
+>>> spin(node)
+>>> spin(client_node)
 State: liquid
+
+>>> result = trigger('freeze') # result = model.freeze()
+>>> spin(client_node)
+>>> spin(node)
+>>> spin(client_node)
 State: solid
+
 ```
 
 ### Cleanup
@@ -157,6 +190,7 @@ To cleanly exit, destroy the nodes and shut down ROS.
 >>> node.destroy_node()
 >>> client_node.destroy_node()
 >>> rclpy.shutdown()
+
 ```
 
 ### ROS2 command line utiltiies
@@ -167,7 +201,7 @@ second [configured environment][ros_environment]. For example,
 the topics created by the node can be listed as follows, at the shell command 
 line.
 
-```
+```bash
 > ros2 topic list
 /machine/event
 /machine/state
@@ -177,8 +211,8 @@ line.
 
 To print state transition messages, use the `topic echo` command.
 
-```
-ros2 topic echo /machine/state
+```bash
+> ros2 topic echo /machine/state
 ```
 
 Note: If command line tools are preferred, then it is not necessary to create a 

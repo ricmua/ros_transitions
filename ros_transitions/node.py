@@ -92,6 +92,7 @@ import rclpy.node
 # Define ROS2 message types.
 from example_interfaces.msg import String as state_message
 from example_interfaces.msg import String as event_message
+from example_interfaces.msg import String as trigger_message
 
 # Define the ROS2 Quality-of-Service pre-set profiles.
 DEFAULT_QOS = rclpy.qos.QoSPresetProfiles.SYSTEM_DEFAULT.value
@@ -161,6 +162,7 @@ class Node(rclpy.node.Node):
         super().__init__(*args, node_name=node_name, 
                                 namespace=namespace, **kwargs)
         self.initialize_publishers()
+        self.initialize_subscriptions()
         if machine: self.machine = machine
         
     @property
@@ -215,6 +217,24 @@ class Node(rclpy.node.Node):
                      msg_type=state_message,
                      qos_profile=DEFAULT_QOS)
         self.event_publisher = self.create_publisher(**kwargs)
+        
+    def initialize_subscriptions(self):
+        """ Initialize a subscription for accept triggers.
+        
+        Subscriptions to the following topics are initialized:
+        * `machine/trigger`
+        
+        If a ROS2 namespace is specified in this class' constructor, then 
+        `machine` is replaced by that namespace in the topic name.        
+        """
+        self.create_subscription(msg_type=trigger_message, 
+                                 topic='trigger',
+                                 callback=self._trigger_callback, 
+                                 qos_profile=DEFAULT_QOS)
+        
+    def _trigger_callback(self, message):
+        """ Callback function for trigger messages. """
+        self.machine.model.trigger(message.data)
         
     def initialize_machine(self):
         """

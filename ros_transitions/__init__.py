@@ -59,5 +59,6 @@ to the state machine model.
 from .node import Node
 from .node import state_message
 from .node import event_message
+from .node import trigger_message
 
 

@@ -37,12 +37,16 @@ multiple processes with the internal state of a system.
 
 ## Getting started
 
-Probably the easiest way to get started is to review the 
+This package can be added to any [ROS2 workspace]. Once the workspace has been 
+built, 
+the easiest way to get started is probably to review the 
 [introductory example](doc/markdown/simple_example.md).
 
-## Benchmarks
+## Testing and benchmarks
 
-Limited [performance benchmarks](doc/markdown/benchmarks.md) are available.
+Limited [autmated tests](doc/markdown/testing.md) and 
+[performance benchmarks](doc/markdown/benchmarks.md) are included with this 
+package.
 
 # License
 
@@ -75,4 +79,7 @@ Please see [LICENSE.txt](./LICENSE.txt).
 [ros_graph]: https://docs.ros.org/en/humble/Tutorials/Understanding-ROS2-Nodes.html#the-ros-2-graph
 
 [abstract_machine]: https://en.wikipedia.org/wiki/Abstract_machine
+
+[ROS2 workspace]: https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html
+
 
