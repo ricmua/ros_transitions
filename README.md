@@ -8,7 +8,7 @@ colorlinks: true
 
 <!-- License
 
-Copyright 2022 Carnegie Mellon University Neuromechatronics Lab (a.whit)
+Copyright 2022-2023 Carnegie Mellon University Neuromechatronics Lab (a.whit)
 
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -44,13 +44,13 @@ the easiest way to get started is probably to review the
 
 ## Testing and benchmarks
 
-Limited [autmated tests](doc/markdown/testing.md) and 
+Limited [automated tests](doc/markdown/testing.md) and 
 [performance benchmarks](doc/markdown/benchmarks.md) are included with this 
 package.
 
 # License
 
-Copyright 2022 [Neuromechatronics Lab], 
+Copyright 2022-2023 [Neuromechatronics Lab], 
 Carnegie Mellon University (a.whit)
 
 Maintained by: a. whit. (nml@whit.contact)

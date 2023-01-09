@@ -23,7 +23,7 @@ available via the [Python path].
 python -m pytest -k 'example'
 ```
 
-If this package is installed as part of a [ROS workspace], then colcon can be 
+If this package is installed as part of a [ROS2 workspace], then colcon can be 
 used to run tests, in a [configured ROS2 environment]. 
 At present, the standard ROS2 [PEP257], [Flake8], and [ament_copyright] tests 
 fail. To exclude these tests, invoke the `colcon` [test verb] with 
