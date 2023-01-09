@@ -48,7 +48,7 @@ to the state machine model.
 .. _model: https://github.com/pytransitions/transitions#basic-initialization
 """
 
-# Copyright 2022 Carnegie Mellon University Neuromechatronics Lab (a.whit)
+# Copyright 2022-2023 Carnegie Mellon University Neuromechatronics Lab (a.whit)
 # 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -57,8 +57,8 @@ to the state machine model.
 # Contact: a.whit (nml@whit.contact)
 
 from .node import Node
-from .node import state_message
-from .node import event_message
-from .node import trigger_message
-
+from .msg import state_message
+from .msg import event_message
+from .msg import trigger_message
+from .client import Node as Client
 

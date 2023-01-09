@@ -1,16 +1,14 @@
 """ This module defines a node_ that interfaces the ROS2 graph_ with a state 
     machine.
 
-.. _node: https://docs.ros.org/en/galactic/Tutorials
-          /Understanding-ROS2-Nodes.html
-.. _graph: https://docs.ros.org/en/galactic/Tutorials
-           /Understanding-ROS2-Nodes.html#the-ros-2-graph
+[node]: https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Nodes.html
+[graph]: https://docs.ros.org/en/galactic/Tutorials/Understanding-ROS2-Nodes.html#the-ros-2-graph
 
 Examples
 --------
 
 Create a pytransitions state machine based on the phases of matter. This 
-example is derived from the pytransitions documentation_:
+example is derived from the pytransitions [documentation]:
 
 >>> import transitions
 >>> class Matter: pass
@@ -36,7 +34,7 @@ transition (via the model interface):
 This should cause the melt event and state transition to be logged.
 
 In order to confirm that each state transition is accompanied by the 
-publication of a ROS message, set up a second configured_ ROS2 environment, in 
+publication of a ROS message, set up a second [configured] ROS2 environment, in 
 order to create a client that listens for state changes. To monitor the state 
 topic, run the following command at the shell command prompt::
 
@@ -72,12 +70,12 @@ To clean up, run the following commands in the Python interpreter:
 Type Ctrl-C to kill the client application, and then exit both ROS2 
 environments.
 
-.. _configured: https://docs.ros.org/en/galactic/Tutorials/Configuring-ROS2-Environment.html
-.. _doctests: https://docs.python.org/3/library/doctest.html#module-doctest
-.. _documentation: https://github.com/pytransitions/transitions#basic-initialization
+[configured]: https://docs.ros.org/en/galactic/Tutorials/Configuring-ROS2-Environment.html
+[doctests]: https://docs.python.org/3/library/doctest.html#module-doctest
+[documentation]: https://github.com/pytransitions/transitions#basic-initialization
 """
 
-# Copyright 2022 Carnegie Mellon University Neuromechatronics Lab (a.whit)
+# Copyright 2022-2023 Carnegie Mellon University Neuromechatronics Lab (a.whit)
 # 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -90,9 +88,9 @@ import rclpy
 import rclpy.node
 
 # Define ROS2 message types.
-from example_interfaces.msg import String as state_message
-from example_interfaces.msg import String as event_message
-from example_interfaces.msg import String as trigger_message
+from ros_transitions.msg import state_message
+from ros_transitions.msg import event_message
+from ros_transitions.msg import trigger_message
 
 # Define the ROS2 Quality-of-Service pre-set profiles.
 DEFAULT_QOS = rclpy.qos.QoSPresetProfiles.SYSTEM_DEFAULT.value
